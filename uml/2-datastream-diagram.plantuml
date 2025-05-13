@@ -1,0 +1,51 @@
+@startuml "Fluxo de Dados do Sistema"
+
+actor "Operador" as Operator
+participant "Sensores IoT" as Sensors
+participant "Gateway IoT" as Gateway
+participant "AWS IoT Core" as IoTCore
+participant "AWS Kinesis" as Kinesis
+participant "AWS Lambda" as Lambda
+participant "DynamoDB" as DynamoDB
+participant "RDS" as RDS
+participant "Amazon S3" as S3
+participant "SageMaker" as SageMaker
+participant "API Gateway" as APIGateway
+participant "Interface Web" as Web
+
+' Fluxo de coleta de dados
+Sensors -> Gateway: Envia dados dos sensores
+Gateway -> IoTCore: Transmite dados via MQTT
+IoTCore -> Kinesis: Encaminha para stream de dados
+Kinesis -> Lambda: Dispara função para processamento
+
+' Fluxo de processamento de dados
+Lambda -> Lambda: Filtra e normaliza dados
+Lambda -> DynamoDB: Armazena dados em tempo real
+Lambda -> RDS: Armazena histórico completo
+Lambda -> S3: Armazena dados brutos
+
+' Fluxo de análise preditiva
+S3 -> SageMaker: Treina modelos com dados históricos
+SageMaker -> Lambda: Fornece predições
+
+' Fluxo de visualização
+Operator -> Web: Acessa dashboard
+Web -> APIGateway: Solicita dados
+APIGateway -> Lambda: Processa requisição
+Lambda -> DynamoDB: Consulta dados em tempo real
+Lambda -> RDS: Consulta dados históricos
+Lambda -> APIGateway: Retorna dados processados
+APIGateway -> Web: Exibe dados e alertas
+Web -> Operator: Visualiza informações e alertas
+
+' Legenda
+legend right
+  **Diagrama de Componentes da Arquitetura**
+  Arquitetura do Sistema de Prevenção de Falhas em Linhas de Produção Industrial
+  ---
+  @ FIAP 2025
+  /Hermes Reply Challenge
+endlegend
+
+@enduml

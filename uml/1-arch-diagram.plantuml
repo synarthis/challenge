@@ -1,0 +1,51 @@
+@startuml "Componentes da Arquitetura"
+
+' Componentes
+package "Camada de Aquisição de Dados" {
+  [Sensores IoT (ESP32)] as Sensores
+  [Gateway IoT] as Gateway
+  [AWS IoT Core] as IoTCore
+}
+
+package "Camada de Processamento e Armazenamento" {
+  [AWS Kinesis] as Kinesis
+  [AWS Lambda] as Lambda
+  [Amazon RDS/PostgreSQL] as RDS
+  [Amazon DynamoDB] as DynamoDB
+  [Amazon S3] as S3
+}
+
+package "Camada de Análise e Machine Learning" {
+  [Amazon SageMaker] as SageMaker
+}
+
+package "Camada de Apresentação" {
+  [Amazon API Gateway] as APIGateway
+  [Interface Web Responsiva] as Web
+}
+
+' Relações
+Sensores --> Gateway : MQTT
+Gateway --> IoTCore : MQTT
+IoTCore --> Kinesis : JSON
+Kinesis --> Lambda : Stream
+Lambda --> DynamoDB : Dados em tempo real
+Lambda --> RDS : Dados históricos
+Lambda --> S3 : Dados brutos
+S3 <--> SageMaker : Modelos e dados
+SageMaker --> Lambda : Predições
+Lambda --> APIGateway : JSON
+APIGateway --> Web : REST API
+
+' Legenda
+legend right
+  **Diagrama de Componentes da Arquitetura**
+  Arquitetura do Sistema de Prevenção de Falhas em Linhas de Produção Industrial
+  ---
+  @ FIAP 2025
+  /Hermes Reply Challenge
+endlegend
+
+
+@enduml
+

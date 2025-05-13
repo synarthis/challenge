@@ -1,0 +1,35 @@
+@startuml "Casos de Uso do Sistema"
+left to right direction
+actor "Operador" as Operator
+actor "Gerente de Manutenção" as Manager
+actor "Administrador" as Admin
+
+rectangle "Sistema de Prevenção de Falhas" {
+  usecase "Visualizar Métricas em Tempo Real" as UC1
+  usecase "Receber Alertas de Potenciais Falhas" as UC2
+  usecase "Visualizar Histórico de Performance" as UC3
+  usecase "Gerar Relatórios de Manutenção" as UC4
+  usecase "Configurar Parâmetros de Alerta" as UC5
+  usecase "Gerenciar Sensores IoT" as UC6
+  usecase "Calibrar Modelos Preditivos" as UC7
+}
+
+Operator --> UC1
+Operator --> UC2
+Operator --> UC3
+Manager --> UC3
+Manager --> UC4
+Manager --> UC5
+Admin --> UC6
+Admin --> UC7
+
+' Legenda
+legend right
+  **Diagrama de Casos de Uso**
+  Arquitetura do Sistema de Prevenção de Falhas em Linhas de Produção Industrial
+  ---
+  @ FIAP 2025
+  /Hermes Reply Challenge
+endlegend
+
+@enduml

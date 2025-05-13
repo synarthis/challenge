@@ -1,0 +1,90 @@
+@startuml "Implantação do Sistema"
+
+node "Ambiente Industrial" {
+  node "Máquina 1" {
+    [Sensores IoT 1] as Sensors1
+  }
+  
+  node "Máquina 2" {
+    [Sensores IoT 2] as Sensors2
+  }
+  
+  node "Máquina N" {
+    [Sensores IoT N] as SensorsN
+  }
+  
+  node "Gateway Local" {
+    [Software Gateway] as GatewaySW
+  }
+}
+
+cloud "AWS Cloud" {
+  node "Serviços IoT" {
+    [AWS IoT Core] as IoTCore
+  }
+  
+  node "Processamento de Stream" {
+    [AWS Kinesis] as Kinesis
+  }
+  
+  node "Computação Serverless" {
+    [AWS Lambda - Processamento] as LambdaProcess
+    [AWS Lambda - API] as LambdaAPI
+  }
+  
+  node "Armazenamento" {
+    database "DynamoDB" {
+      [Tabela Tempo Real] as DynamoTable
+    }
+    
+    database "RDS PostgreSQL" {
+      [Banco Histórico] as RDSDb
+    }
+    
+    database "S3" {
+      [Bucket Dados] as S3Bucket
+      [Bucket Modelos] as S3Models
+    }
+  }
+  
+  node "Machine Learning" {
+    [Amazon SageMaker] as SageMaker
+  }
+  
+  node "API" {
+    [API Gateway] as APIGateway
+  }
+}
+
+node "Cliente" {
+  [Navegador Web] as Browser
+}
+
+' Conexões
+Sensors1 --> GatewaySW : Wi-Fi/BLE
+Sensors2 --> GatewaySW : Wi-Fi/BLE
+SensorsN --> GatewaySW : Wi-Fi/BLE
+GatewaySW --> IoTCore : MQTT/TLS
+IoTCore --> Kinesis : Interno AWS
+Kinesis --> LambdaProcess : Trigger
+LambdaProcess --> DynamoTable : SDK AWS
+LambdaProcess --> RDSDb : SDK AWS
+LambdaProcess --> S3Bucket : SDK AWS
+S3Bucket <--> SageMaker : Dados de Treinamento
+S3Models <-- SageMaker : Modelos Treinados
+LambdaAPI --> DynamoTable : Consulta
+LambdaAPI --> RDSDb : Consulta
+APIGateway --> LambdaAPI : Invocar
+Browser --> APIGateway : HTTPS
+LambdaAPI --> SageMaker : Inferência
+
+' Legenda
+legend right
+  **Diagrama de Componentes da Arquitetura**
+  Arquitetura do Sistema de Prevenção de Falhas em Linhas de Produção Industrial
+  ---
+  @ FIAP 2025
+  /Hermes Reply Challenge
+endlegend
+
+@enduml
