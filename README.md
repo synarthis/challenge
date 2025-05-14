@@ -16,7 +16,7 @@
 |---|---|
 |[LEONARDO DE SENA](https://www.linkedin.com/in/leonardosena)|RM563351|
 |[VIVIAN NASCIMENTO SILVA AMORIM](https://www.linkedin.com/in/vivian-amorim-245a46b7)|RM565078|
-|[CAIO PELLEGRINI](https://www.linkedin.com/in/caiopellegrini/)|566575|
+|[CAIO PELLEGRINI](https://www.linkedin.com/in/caiopellegrini/)|RM566575|
 
 ## 👩‍🏫 Professores:
 ### Tutor(a)
@@ -57,8 +57,9 @@ A proposta tem como objetivo transformar dados brutos em informações relevante
 ### 1. Linguagens e Ferramentas Utilizadas
 
 - Linguagens:
-  - Python
-  - SQL
+  - C++ (ESP32)
+  - Python (Integração)
+  - JavaScript (FrontEnd)
 
 - Bibliotecas e ferramentas:
   - Pandas, NumPy: tratamento e manipulação de dados
@@ -150,13 +151,13 @@ Apresentação dos Dados
     └── Interface Web Responsiva
 ```
 
-### Divisão de Grupo – Sprint 1
+### Divisão de Grupo
 
 **Objetivo da Sprint:** Entregar a estrutura inicial do projeto, com definição da arquitetura, ferramentas utilizadas, simulação do pipeline e documentação técnica no GitHub.
 
 ---
 
-**Vivian Amorim – Responsável por e Documentação Técnica**
+**Vivian Amorim – Responsável pela Documentação Técnica**
 
 **Tarefas:**
 - Redigir o README.md com base nas decisões do grupo.
@@ -174,7 +175,7 @@ Apresentação dos Dados
 
 ---
 
-**Leonardo Sena – Responsável por Arquitetura da Pipeline e Simulação de Coleta de Dados**
+**Leonardo Sena – Responsável pela Arquitetura da Pipeline e Simulação de Coleta de Dados**
 
 **Tarefas:**
 - Explicar os serviços da AWS e justificar o uso de cada ferramenta.
@@ -188,7 +189,7 @@ Apresentação dos Dados
 
 ---
 
-**Caio Pellegrini – Responsável por Pesquisa e Integração com IA**
+**Caio Pellegrini – Responsável pela Pesquisa e Integração com IA**
 
 **Tarefas:**
 - Levantar os requisitos básicos do Amazon SageMaker.
