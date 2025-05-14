@@ -81,6 +81,7 @@ Todo o conteúdo técnico será versionado no GitHub, incluindo códigos, diagra
 
 ### 7. Diagrama de Arquitetura (versão simplificada)
 
+```
 Coleta de Dados
 └── ESP32 (Sensor IoT)
     └── Protocolo MQTT
@@ -103,6 +104,7 @@ Modelos de Machine Learning
 Apresentação dos Dados
 └── Amazon API Gateway (REST API)
     └── Interface Web Responsiva
+```
 
 ### Divisão de Grupo – Sprint 1
 
